@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Counter from './components/Counter';
+import Grid from './components/GridComponent/Grid';
 
 document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
-        React.createElement(Counter),
-        document.getElementById('mount')
+        React.createElement(Grid),
+        document.getElementById('application')
     );
 });
