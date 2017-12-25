@@ -7,7 +7,7 @@ import Subtitle from './Subtitle';
 class Tile extends React.Component {
     render() {
         return (
-            <div className='tile'>
+            <div className='tile' onClick={(id) => this.props.onClick(this.props.sauce.id)}>
                 <Image url={this.props.sauce.imageURL} />
                 <div className='label'>
                     <Title title={this.props.sauce.title} />
