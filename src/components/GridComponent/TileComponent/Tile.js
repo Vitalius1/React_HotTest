@@ -8,8 +8,8 @@ class Tile extends React.Component {
     render() {
         return (
             <div className='tile'>
-                <div className='content'>
-                    <Image url={this.props.sauce.imageURL} />
+                <Image url={this.props.sauce.imageURL} />
+                <div className='label'>
                     <Title title={this.props.sauce.title} />
                     <Subtitle subtitle={this.props.sauce.subtitle} />
                 </div>

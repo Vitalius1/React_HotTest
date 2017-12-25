@@ -9,14 +9,18 @@ class Grid extends React.Component {
         })
         const tiles = sauces.map(sauce => {
             return (
-                <Tile key={sauce.id} sauce={sauce}/>
+                <Tile key={sauce.id} sauce={sauce} />
             );
         })
-        
+
         return (
             <div className='main'>
-                <h1>HOT SAUCE LIST</h1>
-                <div className='wrapper'>{tiles}</div>
+                <header>
+                    <h1>HOT SAUCE LIST</h1>
+                </header>
+                <div>
+                    {tiles}
+                </div>
             </div>
         );
     }
