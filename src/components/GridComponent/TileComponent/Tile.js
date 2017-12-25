@@ -17,4 +17,5 @@ class Tile extends React.Component {
         );
     }
 }
+
 export default Tile;
