@@ -14,9 +14,9 @@ class Grid extends React.Component {
         })
         
         return (
-            <div className='wrapper'>
+            <div className='main'>
                 <h1>HOT SAUCE LIST</h1>
-                {tiles}
+                <div className='wrapper'>{tiles}</div>
             </div>
         );
     }
