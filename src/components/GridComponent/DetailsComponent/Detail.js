@@ -8,10 +8,12 @@ class Detail extends React.Component {
         if (!this.props.show) {
             return null;
         }
-        
+
         return (
             <div className='detail-page'>
-                <h1>Hello Detail Paige!</h1>
+                <a href="#" onClick={() => this.props.onClick()}>
+                    <h2>&lt; BACK TO HOT SAUCE LIST</h2>
+                </a>
             </div>
             // {/* <div className='tile'>
             //     <Image url={this.props.sauce.imageURL} />

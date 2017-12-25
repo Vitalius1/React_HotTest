@@ -18,7 +18,7 @@ class Grid extends React.Component {
         });
     }
 
-    handleClick (id) {
+    handleClick(id) {
         console.log('id:', id);
         this.setState({
             showDetail: !this.state.showDetail
@@ -47,7 +47,10 @@ class Grid extends React.Component {
                 <div>
                     {tiles}
                 </div>
-                <Detail show={this.state.showDetail} />
+                <Detail
+                    show={this.state.showDetail}
+                    onClick={this.handleClick}
+                />
             </div>
         );
     }
