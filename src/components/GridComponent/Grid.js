@@ -13,6 +13,7 @@ class Grid extends React.Component {
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleClose = this.handleClose.bind(this);
 
         this.sauces = list.list.map(listItem => {
             return listItem;
@@ -31,6 +32,10 @@ class Grid extends React.Component {
             sauceToShow: theSauce
         });
     }
+    
+    handleClose(id) {
+        console.log('close tile id:', id);
+    }
 
     render() {
 
@@ -40,6 +45,7 @@ class Grid extends React.Component {
                     key={sauce.id}
                     sauce={sauce}
                     onClick={this.handleClick}
+                    onClickClose={this.handleClose}
                 />
             );
         })
