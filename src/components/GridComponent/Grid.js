@@ -4,11 +4,12 @@ import Tile from './TileComponent/Tile';
 import Detail from './DetailsComponent/Detail';
 
 class Grid extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             showDetail: false,
+            sauceToShow: {},
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -20,8 +21,14 @@ class Grid extends React.Component {
 
     handleClick(id) {
         console.log('id:', id);
+        
+        const theSauce = this.sauces.filter(sauce => {
+            return sauce.id === id;
+        })[0];
+        
         this.setState({
-            showDetail: !this.state.showDetail
+            showDetail: !this.state.showDetail,
+            sauceToShow: theSauce
         });
     }
 
@@ -37,17 +44,18 @@ class Grid extends React.Component {
             );
         })
 
-
-
         return (
             <div className='main'>
                 <header>
                     <h1>HOT SAUCE LIST</h1>
                 </header>
+                
                 <div>
                     {tiles}
                 </div>
+                
                 <Detail
+                    sauce={this.state.sauceToShow}
                     show={this.state.showDetail}
                     onClick={this.handleClick}
                 />

@@ -8,20 +8,16 @@ class Detail extends React.Component {
         if (!this.props.show) {
             return null;
         }
+        // deconstruct the sauce prop
+        const {imageURL, title, subtitle, description} = this.props.sauce;
 
         return (
             <div className='detail-page'>
                 <a href="#" onClick={() => this.props.onClick()}>
                     <h2>&lt; BACK TO HOT SAUCE LIST</h2>
                 </a>
+                <img src={imageURL} alt={title}/>
             </div>
-            // {/* <div className='tile'>
-            //     <Image url={this.props.sauce.imageURL} />
-            //     <div className='label'>
-            //         <Title title={this.props.sauce.title} />
-            //         <Subtitle subtitle={this.props.sauce.subtitle} />
-            //     </div>
-            // </div> */}
         );
     }
 }
