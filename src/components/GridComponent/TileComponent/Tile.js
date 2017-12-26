@@ -22,7 +22,7 @@ class Tile extends React.Component {
         this.setState({ isMouseInside: false });
     }
     handleClose(id) {
-        console.log("close button in tile");
+        console.log("close button in tile:", id);
         this.props.onClickClose(id);
     }
 

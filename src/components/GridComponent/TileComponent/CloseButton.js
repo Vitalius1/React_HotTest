@@ -1,9 +1,16 @@
 import React from 'react';
 
 class CloseButton extends React.Component {
+    handleClick(e) {
+        e.stopPropagation();
+        console.log('****');
+        this.props.onClickClose(this.props.id);
+    }
     render() {
         return (
-            <span className='close' onClick={(id) => this.props.onClickClose(this.props.id)}>&times;</span>
+            <div onClickCapture={this.handleClick.bind(this)}>
+                <span className='close' onClick={this.handleCl}>&times;</span>
+            </div>
         );
     }
 }
