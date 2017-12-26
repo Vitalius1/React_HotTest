@@ -14,6 +14,7 @@ class Tile extends React.Component {
         this.mouseEnter = this.mouseEnter.bind(this);
         this.mouseLeave = this.mouseLeave.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
     }
 
     mouseEnter() { // Hover-in mouse handler to show the close button
@@ -28,19 +29,25 @@ class Tile extends React.Component {
         this.props.onClickClose(id);
     }
 
+    handleFocus() {
+       
+    }
+
     render() {
         return (
             <div
+                onFocus={this.handleFocus}
+                tabIndex={0}
                 className='tile'
                 onClick={(id) => this.props.onClick(this.props.sauce.id)}
                 onMouseEnter={this.mouseEnter}
                 onMouseLeave={this.mouseLeave} >
 
-                {this.state.isMouseInside ? // if it's true --> create the CloseButton component
-                    <CloseButton
-                        onClickClose={this.handleClose}
-                        id={this.props.sauce.id} />
-                    : null}
+                <CloseButton
+                    onClickClose={this.handleClose}
+                    id={this.props.sauce.id}
+                    isMouseInside={this.state.isMouseInside} />
+
 
                 <Image url={this.props.sauce.imageURL} />
 

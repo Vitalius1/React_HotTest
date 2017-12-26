@@ -19,7 +19,22 @@ class Grid extends React.Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        // this.handleKeyDown = this.handleKeyDown.bind(this);
     }
+
+    // componentWillMount(){
+    //     document.addEventListener("keydown", this.handleKeyDown, false);
+    // }
+    
+    // componentWillUnmount() {
+    //     document.removeEventListener("keydown", this.handleKeyDown, false);
+    // }
+
+    // handleKeyDown(event){
+    //     if (event.key == 'Tab'){
+    //         console.log("key:", event.keyCode);
+    //     }
+    // }
 
     handleClick(id) {
         var theSauce = {};

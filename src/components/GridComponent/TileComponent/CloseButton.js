@@ -1,6 +1,9 @@
 import React from 'react';
 
 class CloseButton extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     
     handleClick(e) {
         e.stopPropagation();
@@ -8,9 +11,12 @@ class CloseButton extends React.Component {
     }
     
     render() {
+        if(!this.props.isMouseInside){
+            return null;
+        }
         return (
             <div onClickCapture={this.handleClick.bind(this)}>
-                <span className='close' onClick={this.handleCl}>&times;</span>
+                <span tabIndex={0} className='close' onClick={this.handleCl}>&times;</span>
             </div>
         );
     }
