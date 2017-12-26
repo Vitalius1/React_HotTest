@@ -60,12 +60,12 @@ class App extends React.Component {
         });
 
         return (
-            <div className='main' >
-                <header>
+            <div className="App-mainContainer" >
+                <div className="App-title">
                     <h1>HOT SAUCE LIST</h1>
-                </header>
+                </div>
 
-                <div>
+                <div className="App-hotSauceListContainer">
                     {hotSauceList}
                 </div>
 

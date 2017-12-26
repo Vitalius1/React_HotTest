@@ -7,50 +7,63 @@
     font-family: Open Sans, sans-serif;
 }
 
-h1, h2 {
-    font-size: 3em;
-    color: #A5050F;
-    margin: 1%;
-    margin-left: 5%;
+img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto; /* center images */
 }
 
-h2 {
-    font-size: 2em;
+.App-mainContainer {
+    padding: 2%; /* some general padding to move away the elements inside from the browser edges */
 }
 
-.main {
-    padding: 1.5%;
-}
-
-/* Create four equal tiles that floats next to each other */
-.tile {
-    position: relative;
-    float: left;
-    width: 25%;
-    padding: 1%;
-}
-    .close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        color: #f1f1f1;
-        font-size: 30px;
-        font-weight: bold;
-        transition: 0.3s;
+    .App-title {
+        font-size: 1.5em;
+        color: #A5050F; /* HotSauce red-brown color picked from the mock-up */
+        padding: 1% 0 1% 5%; /* move title a little to right side as per design */
     }
 
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
+    .App-hotSauceListContainer {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-around;
+        /* align-content: stretch; */
     }
+
+        .HotSauceBox {
+            order: 1;
+            width: 23%; /* 23% because need some space in betwwen the boxes according the design presented in the mock-up */
+            position: relative;
+            margin-bottom: 2%;
+        }
+
+        .HotSauceBox:hover {
+            cursor: default;
+        }
+
+            .HotSauceBox-removeButton {
+                position: absolute;
+                top: 10px; /* less than right because accounting for line-height */
+                right: 20px;
+                color: #f1f1f1; /* slightly grey color picked from mock-up */
+                font-size: 30px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+                .HotSauceBox-removeButton:hover,
+                .HotSauceBox-removeButton:focus {
+                    color: #bbb; /* emphasize focusing or hovering over the button */
+                    cursor: pointer;
+                }
     
-    img {
-        width: 100%;
-        height: auto;
-        border: 1px solid #E2E2E2;
-    }
+            .HotSauceBox-imageContainer {
+                width: 100%;
+                height: 40%;
+                border: 1px solid #E2E2E2; /* slightly grey color for border around image as per mock-up */
+            }
+
     .label {
         padding: 5%;
         height: 15%;

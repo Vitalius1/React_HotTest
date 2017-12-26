@@ -2,6 +2,7 @@ import React from 'react';
 // reusing already existing component to build the Detail Page Component
 import HotSauceTitle from '../HotSauceBoxComponent/HotSauceTitle';
 import HotSauceImage from '../HotSauceBoxComponent/HotSauceImage';
+import HotSauceDescription from './HotSauceDescription';
 
 class HotSauceDetail extends React.Component {
     render() {
@@ -29,10 +30,10 @@ class HotSauceDetail extends React.Component {
                 </div>
 
                 <div className='right-description'>
-                    <p>{description}</p>
+                    <HotSauceDescription description={description} />
                 </div>
             </div>
-        );
+                );
     }
 }
 export default HotSauceDetail;

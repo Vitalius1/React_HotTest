@@ -30,13 +30,13 @@ class HotSauceBox extends React.Component {
     handleMouseEnter() { // Hover-in mouse handler to show the remove button
         this.setState({
             isMouseInside: true
-        })
+        });
     }
 
     handleMouseLeave() { // Hover-out mouse handler to hide the remove button
         this.setState({
             isMouseInside: false
-        })
+        });
     }
 
     handleClickRemove(id) { // pass the id to parent method to handle removing from list
@@ -46,38 +46,38 @@ class HotSauceBox extends React.Component {
     handleFocus() { // when HotSauceBox in focus by pressing TAB key --> show remove button
         this.setState({
             isMouseInside: true
-        })
+        });
     }
 
     handleBlurFromRemoveButton() { // when focus leaving remove button --> hide it again
         this.setState({
             isMouseInside: false
-        })
+        });
     }
 
     render() {
         const { title, subtitle, imageURL, id } = this.props.sauce; // deconstruct the sauce object
         return (
             <div
-                onKeyDown={this.handleKeyDown}
-                onFocus={this.handleFocus}
                 tabIndex={0}
-                className='tile'
-                onClick={(id) => this.props.onClick(this.props.sauce.id)}
+                className="HotSauceBox"
+                onFocus={this.handleFocus}
+                onKeyDown={this.handleKeyDown}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
+                onClick={(id) => this.props.onClick(this.props.sauce.id)}
             >
                 <HotSauceRemoveButton
-                    onClickRemove={this.handleClickRemove}
                     sauceId={id}
+                    onClickRemove={this.handleClickRemove}
                     isMouseInside={this.state.isMouseInside}
                     handleBlur={this.handleBlurFromRemoveButton}
                 />
                 <HotSauceImage
-                    imageURL={imageURL}
                     title={title}
+                    imageURL={imageURL}
                 />
-                <div className='label'>
+                <div className="label">
                     <HotSauceTitle title={title} />
                     <HotSauceSubtitle subtitle={subtitle} />
                 </div>

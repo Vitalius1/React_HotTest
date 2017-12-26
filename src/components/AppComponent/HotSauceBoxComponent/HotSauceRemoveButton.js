@@ -4,9 +4,9 @@ class HotSauceRemoveButton extends React.Component {
     constructor(props) {
         super(props);
 
+        this.handleBlur = this.handleBlur.bind(this);
         this.handleClickCaptured = this.handleClickCaptured.bind(this);
         this.handleKeyDownCaptured = this.handleKeyDownCaptured.bind(this);
-        this.handleBlur = this.handleBlur.bind(this);
     }
 
     handleClickCaptured(event) { // capture the click event from bubbling-up
@@ -34,11 +34,11 @@ class HotSauceRemoveButton extends React.Component {
             <div onClickCapture={this.handleClickCaptured}
                 onKeyDownCapture={this.handleKeyDownCaptured}>
                 <span
-                    onKeyDown={this.handleKeyDown}
                     tabIndex={0}
+                    className='HotSauceBox-removeButton'
                     onBlur={this.handleBlur}
-                    className='close'
                     onClick={this.handleClick}
+                    onKeyDown={this.handleKeyDown}
                 >
                     &times;
                 </span>
