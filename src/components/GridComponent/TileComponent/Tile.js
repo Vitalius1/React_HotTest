@@ -9,20 +9,22 @@ class Tile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isMouseInside: false,
+            isMouseInside: false, // used to toggle the close button on each tile when mouse hovering
         };
         this.mouseEnter = this.mouseEnter.bind(this);
         this.mouseLeave = this.mouseLeave.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
-    mouseEnter() {
+
+    mouseEnter() { // Hover-in mouse handler to show the close button
         this.setState({ isMouseInside: true });
     }
-    mouseLeave() {
+
+    mouseLeave() { // Hover-out mouse handler to hide the close button
         this.setState({ isMouseInside: false });
     }
+
     handleClose(id) {
-        console.log("close button in tile:", id);
         this.props.onClickClose(id);
     }
 
@@ -32,10 +34,16 @@ class Tile extends React.Component {
                 className='tile'
                 onClick={(id) => this.props.onClick(this.props.sauce.id)}
                 onMouseEnter={this.mouseEnter}
-                onMouseLeave={this.mouseLeave}
-            >
-                {this.state.isMouseInside ? <CloseButton onClickClose={this.handleClose} id={this.props.sauce.id} /> : null}
+                onMouseLeave={this.mouseLeave} >
+
+                {this.state.isMouseInside ? // if it's true --> create the CloseButton component
+                    <CloseButton
+                        onClickClose={this.handleClose}
+                        id={this.props.sauce.id} />
+                    : null}
+
                 <Image url={this.props.sauce.imageURL} />
+
                 <div className='label'>
                     <Title title={this.props.sauce.title} />
                     <Subtitle subtitle={this.props.sauce.subtitle} />
