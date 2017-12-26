@@ -4,38 +4,39 @@ class HotSauceRemoveButton extends React.Component {
     constructor(props) {
         super(props);
 
-        this._handleClickCaptured = this._handleClickCaptured.bind(this);
-        this._handleKeyDownCaptured = this._handleKeyDownCaptured.bind(this);
-        this._handleBlur = this._handleBlur.bind(this);
+        this.handleClickCaptured = this.handleClickCaptured.bind(this);
+        this.handleKeyDownCaptured = this.handleKeyDownCaptured.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    _handleClickCaptured(e) { // capture the click event from bubbling-up
-        e.stopPropagation();
-        this.props.onClickClose(this.props.id);
+    handleClickCaptured(event) { // capture the click event from bubbling-up
+        event.stopPropagation();
+        this.props.onClickRemove(this.props.sauceId);
     }
 
-    _handleKeyDownCaptured(e) { // capture the keyDown event from bubbling-up
-        e.stopPropagation();
-        if (e.key === 'Backspace') {
-            this.props.onClickClose(this.props.id)
+    handleKeyDownCaptured(event) { // capture the keyDown event from bubbling-up
+        event.stopPropagation();
+        if (event.key === 'Backspace') {
+            this.props.onClickRemove(this.props.sauceId)
         }
     }
 
-    _handleBlur() {
+    handleBlur() { // notify the parent (HotSauceBox) that the focus left remove button
         this.props.handleBlur()
     }
 
     render() {
+        // only return the element when mouse hovers the HotSauceBox specific to this remove button
         if (!this.props.isMouseInside) {
             return null;
         }
         return (
-            <div onClickCapture={this._handleClickCaptured}
-                onKeyDownCapture={this._handleKeyDownCaptured}>
+            <div onClickCapture={this.handleClickCaptured}
+                onKeyDownCapture={this.handleKeyDownCaptured}>
                 <span
                     onKeyDown={this.handleKeyDown}
                     tabIndex={0}
-                    onBlur={this._handleBlur}
+                    onBlur={this.handleBlur}
                     className='close'
                     onClick={this.handleClick}
                 >

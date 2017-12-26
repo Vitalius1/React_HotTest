@@ -5,52 +5,51 @@ import HotSauceTitle from './HotSauceTitle';
 import HotSauceSubtitle from './HotSauceSubtitle';
 import HotSauceRemoveButton from './HotSauceRemoveButton'
 
-
 class HotSauceBox extends React.Component {
     constructor(props) {
         super(props);
         // initialize state when constructing the component
         this.state = {
-            isMouseInside: false, // used to toggle the close button on each tile when mouse hovering
+            isMouseInside: false, // used to toggle the remove button on each tile when mouse hovering
         };
 
-        this._handleMouseEnter = this._handleMouseEnter.bind(this);
-        this._handleMouseLeave = this._handleMouseLeave.bind(this);
-        this._handleClickClose = this._handleClickClose.bind(this);
-        this._handleFocus = this._handleFocus.bind(this);
-        this._handleKeyDown = this._handleKeyDown.bind(this);
-        this._handleBlurFromCloseButton = this._handleBlurFromCloseButton.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.handleClickRemove = this.handleClickRemove.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleBlurFromRemoveButton = this.handleBlurFromRemoveButton.bind(this);
     }
 
-    _handleKeyDown(event) { // Handling when HotSauceBox is in focus and press ENTER key
+    handleKeyDown(event) { // Handling when HotSauceBox is in focus and press ENTER key
         if (event.key == 'Enter') {
             this.props.onClick(this.props.sauce.id);
         }
     }
 
-    _handleMouseEnter() { // Hover-in mouse handler to show the close button
+    handleMouseEnter() { // Hover-in mouse handler to show the remove button
         this.setState({
             isMouseInside: true
         })
     }
 
-    _handleMouseLeave() { // Hover-out mouse handler to hide the close button
+    handleMouseLeave() { // Hover-out mouse handler to hide the remove button
         this.setState({
             isMouseInside: false
         })
     }
 
-    _handleClickClose(id) { // pass the id to parent method to handle removing from list
-        this.props.onClickClose(id);
+    handleClickRemove(id) { // pass the id to parent method to handle removing from list
+        this.props.onClickRemove(id);
     }
 
-    _handleFocus() { // when HotSauceBox in focus by pressing TAB key --> show close button
+    handleFocus() { // when HotSauceBox in focus by pressing TAB key --> show remove button
         this.setState({
             isMouseInside: true
         })
     }
 
-    _handleBlurFromCloseButton() { // when focus leaving close button --> hide it again
+    handleBlurFromRemoveButton() { // when focus leaving remove button --> hide it again
         this.setState({
             isMouseInside: false
         })
@@ -60,32 +59,27 @@ class HotSauceBox extends React.Component {
         const { title, subtitle, imageURL, id } = this.props.sauce; // deconstruct the sauce object
         return (
             <div
-                onKeyDown={this._handleKeyDown}
-                onFocus={this._handleFocus}
+                onKeyDown={this.handleKeyDown}
+                onFocus={this.handleFocus}
                 tabIndex={0}
                 className='tile'
                 onClick={(id) => this.props.onClick(this.props.sauce.id)}
-                onMouseEnter={this._handleMouseEnter}
-                onMouseLeave={this._handleMouseLeave}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
             >
                 <HotSauceRemoveButton
-                    onClickClose={this._handleClickClose}
-                    id={id}
+                    onClickRemove={this.handleClickRemove}
+                    sauceId={id}
                     isMouseInside={this.state.isMouseInside}
-                    handleBlur={this._handleBlurFromCloseButton}
+                    handleBlur={this.handleBlurFromRemoveButton}
                 />
                 <HotSauceImage
                     imageURL={imageURL}
                     title={title}
                 />
-                <div
-                    className='label'>
-                    <HotSauceTitle
-                        title={title}
-                    />
-                    <HotSauceSubtitle
-                        subtitle={subtitle}
-                    />
+                <div className='label'>
+                    <HotSauceTitle title={title} />
+                    <HotSauceSubtitle subtitle={subtitle} />
                 </div>
             </div>
         );

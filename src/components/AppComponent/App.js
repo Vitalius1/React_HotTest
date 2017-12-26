@@ -1,6 +1,6 @@
 import React from 'react';
 import HotSauceBox from './HotSauceBoxComponent/HotSauceBox';
-import Detail from './DetailPageComponent/Detail';
+import HotSauceDetail from './HotSauceDetailPageComponent/HotSauceDetail';
 
 import list from '../../hotsauces.json';
 
@@ -11,52 +11,50 @@ class App extends React.Component {
         this.state = {
             showDetail: false, // used to toggle the DetailPageComponent
             sauceToShow: {},   // used to pass the sauce to DetailPageComponent
-            hideIds: []        // used to store the IDs of the sauces to remove from list
+            sauceIdsToHide: []        // used to store the IDs of the sauces to remove from list
         };
-        
+
         this.sauces = list.list.map(listItem => {
             return listItem;
         });
 
         this.handleClick = this.handleClick.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
-    handleClick(sauceID) {
-        var theSauce = {};
+    handleClick(id) {
+        var sauceToShow = {};
         // checking id because method used by different components (one is passing an id and the other not)
-        if (sauceID !== 'undefined') {
-            theSauce = this.sauces.filter(sauce => {
-                return sauce.id === sauceID;
+        if (id !== 'undefined') {
+            sauceToShow = this.sauces.filter(sauce => {
+                return sauce.id === id;
             })[0];
         }
-
-        this.setState({
+        this.setState({ // update the state to toggle the detail page
             showDetail: !this.state.showDetail,
-            sauceToShow: theSauce
+            sauceToShow: sauceToShow
         });
     }
 
-    handleClose(id) {
-        var hideIds = this.state.hideIds;
-        hideIds.push(id);
+    handleRemove(id) { // adding the id of the sauce to remove from list and updating the sate for it
+        var sauceIdsToHide = this.state.sauceIdsToHide;
+        sauceIdsToHide.push(id);
         this.setState({
-            hideIds: hideIds
+            sauceIdsToHide: sauceIdsToHide
         });
     }
 
     render() {
-
-        const tiles = this.sauces.filter(sauce => {
-            return this.state.hideIds.indexOf(sauce.id) == -1;
+        // filtering the sauces which are removed and creating a list of the remaining HotSauce Boxes
+        const hotSauceList = this.sauces.filter(sauce => {
+            return this.state.sauceIdsToHide.indexOf(sauce.id) === -1;
         }).map(sauce => {
             return (
                 <HotSauceBox
                     key={sauce.id}
                     sauce={sauce}
-                    idsToHide={this.state.sauceIdToHide}
                     onClick={this.handleClick}
-                    onClickClose={this.handleClose}
+                    onClickRemove={this.handleRemove}
                 />
             );
         });
@@ -68,10 +66,10 @@ class App extends React.Component {
                 </header>
 
                 <div>
-                    {tiles}
+                    {hotSauceList}
                 </div>
 
-                <Detail
+                <HotSauceDetail
                     sauce={this.state.sauceToShow}
                     show={this.state.showDetail}
                     onClick={this.handleClick}

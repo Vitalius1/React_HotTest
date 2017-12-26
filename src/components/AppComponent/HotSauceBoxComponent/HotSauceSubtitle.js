@@ -1,10 +1,6 @@
 import React from 'react';
 
-class HotSauceSubtitle extends React.Component {
-    render() {
-        return (
-            <p>{this.props.subtitle}</p>
-        );
-    }
+function HotSauceSubtitle({ subtitle }) {
+    return <p>{subtitle}</p>
 }
 export default HotSauceSubtitle;
