@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Grid from './components/GridComponent/Grid';
+import App from './components/AppComponent/App';
 
 document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
-        React.createElement(Grid),
+        React.createElement(App),
         document.getElementById('application')
     );
 });

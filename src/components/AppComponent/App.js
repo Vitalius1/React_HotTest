@@ -1,18 +1,19 @@
 import React from 'react';
+import HotSauceBox from './HotSauceBoxComponent/HotSauceBox';
+import Detail from './DetailPageComponent/Detail';
+
 import list from '../../hotsauces.json';
-import Tile from './TileComponent/Tile';
-import Detail from './DetailsComponent/Detail';
 
-class Grid extends React.Component {
-    constructor() {
-        super();
-
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        // initialize state when constructing the component
         this.state = {
-            showDetail: false,
-            sauceToShow: {},
-            hideIds: []
+            showDetail: false, // used to toggle the DetailPageComponent
+            sauceToShow: {},   // used to pass the sauce to DetailPageComponent
+            hideIds: []        // used to store the IDs of the sauces to remove from list
         };
-
+        
         this.sauces = list.list.map(listItem => {
             return listItem;
         });
@@ -21,12 +22,12 @@ class Grid extends React.Component {
         this.handleClose = this.handleClose.bind(this);
     }
 
-    handleClick(id) {
+    handleClick(sauceID) {
         var theSauce = {};
         // checking id because method used by different components (one is passing an id and the other not)
-        if (id !== 'undefined') {
+        if (sauceID !== 'undefined') {
             theSauce = this.sauces.filter(sauce => {
-                return sauce.id === id;
+                return sauce.id === sauceID;
             })[0];
         }
 
@@ -37,7 +38,6 @@ class Grid extends React.Component {
     }
 
     handleClose(id) {
-        console.log('close tile id:', id);
         var hideIds = this.state.hideIds;
         hideIds.push(id);
         this.setState({
@@ -51,7 +51,7 @@ class Grid extends React.Component {
             return this.state.hideIds.indexOf(sauce.id) == -1;
         }).map(sauce => {
             return (
-                <Tile
+                <HotSauceBox
                     key={sauce.id}
                     sauce={sauce}
                     idsToHide={this.state.sauceIdToHide}
@@ -80,4 +80,4 @@ class Grid extends React.Component {
         );
     }
 }
-export default Grid;
+export default App;
