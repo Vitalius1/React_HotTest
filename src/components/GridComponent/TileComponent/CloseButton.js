@@ -22,6 +22,7 @@ class CloseButton extends React.Component {
     }
 
     handleBlur() {
+        this.props.handleBlur()
     }
 
     render() {
