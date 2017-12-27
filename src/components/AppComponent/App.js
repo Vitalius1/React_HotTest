@@ -76,7 +76,6 @@ class App extends React.Component {
             <div>
                 <HotSauceDetail
                     sauce={this.state.sauceToShow}
-                    show={this.state.showDetail}
                     onClick={this.handleClick}
                 />
             </div>
