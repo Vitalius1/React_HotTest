@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
@@ -6,7 +7,8 @@ const app = express();
 
 const compiler = webpack(webpackConfig);
 
-app.use(express.static(__dirname + '/public'));
+const publicPath = path.resolve(__dirname, 'public')
+app.use(express.static(publicPath));
 
 app.use(webpackDevMiddleware(compiler, {
     hot: true,
