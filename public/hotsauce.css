@@ -7,10 +7,15 @@
     font-family: Open Sans, sans-serif;
 }
 
+h1, h2, h3, p {
+    background-color: inherit;
+    word-wrap: break-word;
+}
+
 img {
     display: block;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 100%; 
     margin: auto; /* center images */
 }
 
@@ -21,74 +26,85 @@ img {
     .App-title {
         font-size: 1.5em;
         color: #A5050F; /* HotSauce red-brown color picked from the mock-up */
-        padding: 1% 0 1% 5%; /* move title a little to right side as per design */
+        padding: 1% 0 3% 5%; /* move title a little to right side as per design */
     }
 
     .App-hotSauceListContainer {
         display: flex;
         flex-flow: wrap;
         justify-content: space-around;
-        /* align-content: stretch; */
     }
 
         .HotSauceBox {
             order: 1;
             width: 23%; /* 23% because need some space in betwwen the boxes according the design presented in the mock-up */
             position: relative;
-            margin-bottom: 2%;
+            margin-bottom: 2%; /* added for space between rows to eye match the gap between boxes afte justify-content styling */
         }
 
         .HotSauceBox:hover {
             cursor: default;
         }
 
-            .HotSauceBox-removeButton {
-                position: absolute;
-                top: 10px; /* less than right because accounting for line-height */
-                right: 20px;
-                color: #f1f1f1; /* slightly grey color picked from mock-up */
-                font-size: 30px;
-                font-weight: bold;
-                transition: 0.3s;
+            .HotSauceBox-imageContainer {
+                position: relative;
+                width: 100%;
+                height: 36%; /* 36% trying to match as much as possible the width created for the HotSauceBox */
+                border: 1px solid #E2E2E2; /* slightly grey color for border around image as per mock-up */
             }
+            
+                .HotSauceBox-imageContainer > img { /* attempting to center the image inside the container */
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                }
+            
+                .HotSauceBox-removeButton {
+                    position: absolute;
+                    top: 10px; /* less than right because accounting for line-height */
+                    right: 20px;
+                    z-index: 1; /* position the button on top */
+                    color: #f1f1f1; /* slightly grey color picked from mock-up */
+                    font-size: 30px;
+                    font-weight: bold;
+                    transition: 0.3s;
+                }
 
                 .HotSauceBox-removeButton:hover,
                 .HotSauceBox-removeButton:focus {
                     color: #bbb; /* emphasize focusing or hovering over the button */
                     cursor: pointer;
                 }
-    
-            .HotSauceBox-imageContainer {
-                width: 100%;
-                height: 40%;
-                border: 1px solid #E2E2E2; /* slightly grey color for border around image as per mock-up */
+
+            .HotSauceBox-labelContainer {
+                padding: 5%;
+                height: 15%;
+                color: #858585;
+                background-color: #F2F2F2;
+
             }
+        
+                .HotSauceBox-labelContainer > h3 {
+                    font-size: 180%;
+                }
+                
+                .HotSauceBox-labelContainer > p {
+                    font-size: 85%;
+                }
+/* _____________________________________________________    
+        Below styles for the detail page */
 
-    .label {
-        padding: 5%;
-        height: 15%;
-        background-color: #F2F2F2;
-        color: #858585;
+    .HotSauceDetail-wrapperContainer { /* this component on creation will cover the initial rendered component without removing it */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
     }
-        .label>h3,p {
-            background-color: inherit;
-        }
-        .label>h3 {
-            font-size: 180%;
-        }
-        .label>p {
-            font-size: 85%;
-        }
     
-
-.detail-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-}
     .left-title-image {
         float: left;
         width: 65%;
@@ -139,19 +155,27 @@ img {
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media only screen and (max-width: 900px) {
-    .tile {
-        width: 50%;
+    
+    .App-title {
+        font-size: 1em;
     }
-    header>h1 {
-        font-size: 2em;
+    
+    .HotSauceBox {
+        width: 48%;
     }
 }
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media only screen and (max-width: 600px) {
-    .tile {
+    
+    .App-title {
+        font-size: 0.7em;
+    }
+
+    .HotSauceBox {
         width: 100%;
     }
+    
     .left-title-image,
     .right-description {
         width: 100%;

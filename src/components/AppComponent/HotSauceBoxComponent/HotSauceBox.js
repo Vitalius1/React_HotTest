@@ -67,17 +67,19 @@ class HotSauceBox extends React.Component {
                 onMouseLeave={this.handleMouseLeave}
                 onClick={(id) => this.props.onClick(this.props.sauce.id)}
             >
-                <HotSauceRemoveButton
-                    sauceId={id}
-                    onClickRemove={this.handleClickRemove}
-                    isMouseInside={this.state.isMouseInside}
-                    handleBlur={this.handleBlurFromRemoveButton}
-                />
-                <HotSauceImage
-                    title={title}
-                    imageURL={imageURL}
-                />
-                <div className="label">
+                <div className="HotSauceBox-imageContainer">
+                    <HotSauceRemoveButton
+                        sauceId={id}
+                        onClickRemove={this.handleClickRemove}
+                        isMouseInside={this.state.isMouseInside}
+                        handleBlur={this.handleBlurFromRemoveButton}
+                    />
+                    <HotSauceImage
+                        title={title}
+                        imageURL={imageURL}
+                    />
+                </div>
+                <div className="HotSauceBox-labelContainer">
                     <HotSauceTitle title={title} />
                     <HotSauceSubtitle subtitle={subtitle} />
                 </div>
