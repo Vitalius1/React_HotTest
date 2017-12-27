@@ -40,6 +40,7 @@ img {
     }
 
         .HotSauceBox {
+            transition: box-shadow .3s;
             order: 1;
             width: 23%; /* 23% because need some space in betwwen the boxes according the design presented in the mock-up */
             position: relative;
@@ -48,6 +49,7 @@ img {
 
         .HotSauceBox:hover {
             cursor: default;
+            box-shadow: 0 0 11px rgba(15, 162, 247, 0.7);
         }
 
             .HotSauceBox-imageContainer {
@@ -70,15 +72,16 @@ img {
                     top: 10px; /* less than right because accounting for line-height */
                     right: 20px;
                     z-index: 1; /* position the button on top */
-                    color: #f1f1f1; /* slightly grey color picked from mock-up */
+                    color: #bbb; /* slightly grey color picked from mock-up */
+                    background-color: transparent;
                     font-size: 30px;
-                    font-weight: bold;
+
                     transition: 0.3s;
                 }
 
                 .HotSauceBox-removeButton:hover,
                 .HotSauceBox-removeButton:focus {
-                    color: #bbb; /* emphasize focusing or hovering over the button */
+                    color: #f51414; /* emphasize focusing or hovering over the button */
                     cursor: pointer;
                 }
 
