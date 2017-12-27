@@ -22,7 +22,7 @@ class HotSauceBox extends React.Component {
     }
 
     handleKeyDown(event) { // Handling when HotSauceBox is in focus and press ENTER key
-        if (event.key == 'Enter') {
+        if (event.key == "Enter") {
             this.props.onClick(this.props.sauce.id);
         }
     }

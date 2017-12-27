@@ -13,27 +13,26 @@ class HotSauceDetail extends React.Component {
         // deconstruct the sauce object passed from the parent
         const { imageURL, title, description } = this.props.sauce;
         return (
-            <div className='HotSauceDetail-wrapperContainer'>
-                <div className='left-title-image'>
-                    <div className='header-title'>
+            <div className="HotSauceDetail-wrapperContainer">
+                <div className="HotSauceDetail-leftContainer">
+                    <div className="HotSauceDetail-headerContainer">
                         <a href="#" onClick={() => this.props.onClick()}>
                             &lt;&nbsp; BACK TO HOT SAUCE LIST
                         </a>
                         <HotSauceTitle title={title} />
                     </div>
-                    <div className='detail-image'>
+                    <div className="HotSauceDetail-imageContainer">
                         <HotSauceImage
                             imageURL={imageURL}
                             title={title}
                         />
                     </div>
                 </div>
-
-                <div className='right-description'>
+                <div className="HotSauceDetail-rightDescriptionContainer">
                     <HotSauceDescription description={description} />
                 </div>
             </div>
-                );
+        );
     }
 }
 export default HotSauceDetail;

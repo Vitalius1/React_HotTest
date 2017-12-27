@@ -7,7 +7,8 @@
     font-family: Open Sans, sans-serif;
 }
 
-h1, h2, h3, p {
+/* General styling of HTML tags with common styling across the project*/
+h1, h2, h3, p, a {
     background-color: inherit;
     word-wrap: break-word;
 }
@@ -18,6 +19,9 @@ img {
     max-height: 100%; 
     margin: auto; /* center images */
 }
+
+/* _________________________________________________________________________    
+                    Below styles for the list page */
 
 .App-mainContainer {
     padding: 2%; /* some general padding to move away the elements inside from the browser edges */
@@ -87,71 +91,64 @@ img {
             }
         
                 .HotSauceBox-labelContainer > h3 {
-                    font-size: 180%;
+                    font-size: 30px;
                 }
                 
                 .HotSauceBox-labelContainer > p {
-                    font-size: 85%;
+                    font-size: 12px;
                 }
-/* _____________________________________________________    
-        Below styles for the detail page */
+/* _________________________________________________________________________    
+                    Below styles for the detail page */
 
-    .HotSauceDetail-wrapperContainer { /* this component on creation will cover the initial rendered component without removing it */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    .HotSauceDetail-wrapperContainer {
+        display: flex;
+        flex-flow: wrap;
         overflow-y: auto;
     }
     
-    .left-title-image {
-        float: left;
-        width: 65%;
-    }
-        .header-title {
-            background-color: #E5E5E5;
-            padding: 3% 0 3% 10%;
+        .HotSauceDetail-leftContainer {
+            order: 1;
+            width: 65%; /* eye match the proportions from the mock-up */
         }
-        a {
-            background-color: inherit;
-            text-decoration: none;
-            font-size: 1.5em;
-            color: #A5050F;
-            margin: 0;
-        }
-        .header-title>h1 {
-            color: #717171;
-            background-color: inherit;
-            margin: 0;
-            margin-top: 5%;
-            font-weight: 300;
-        }
-        .detail-image {
-            background-color: #DEDEDE;
-            padding: 5% 0;
-        }
-            .detail-image>img {
-                display: block;
+            
+            .HotSauceDetail-headerContainer {
+                background-color: #E5E5E5; /* color picked from the design mock-up */
+                padding: 3% 0 3% 10%; /* according to design it has more padding on left side */
+            }
+                
+                .HotSauceDetail-headerContainer > a {
+                    text-decoration: none;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    color: #A5050F; /* matching color from the HotSauce List page (per mock-up) */
+                }
+                
+                .HotSauceDetail-headerContainer > h3 {
+                    color: #717171; /* color picked from the design mock-up */
+                    padding-top: 3%; /* eye match the gap between the anchor tag and the title */
+                    font-size: 3em;
+                }
+        
+        
+            .HotSauceDetail-imageContainer {
                 height: 70%;
-                width: auto;
-                border: none;
-                margin: 0 auto;
-                mix-blend-mode: multiply;
+                background-color: #DEDEDE; /* color picked from the design mock-up to fill the white background of images */
+                padding: 5%; /* padding in order to wrap the image with the greyish background */
+            }
+            
+            .HotSauceDetail-imageContainer > img {
+                mix-blend-mode: multiply; /* mix-blend-mode property should blend with its direct parent background */
+                height: 100%;
             }
 
-    .right-description {
-        float: left;
-        width: 35%;
-        padding: 5% 2%;
-    }
-        .right-description>p {
-            white-space: wrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .HotSauceDetail-rightDescriptionContainer {
+            order: 2;
+            width: 35%;
+            padding: 5% 2%; /* padding to leave space between the edges of the container and the child paragraph */
         }
 
-
+/* _________________________________________________________________________    
+Below media queries to implement some responsiveness --> can be done more :) */
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media only screen and (max-width: 900px) {
@@ -176,9 +173,12 @@ img {
         width: 100%;
     }
     
-    .left-title-image,
-    .right-description {
+    .HotSauceDetail-leftContainer,
+    .HotSauceDetail-rightDescriptionContainer {
         width: 100%;
-        float: none;
+    }
+
+    .HotSauceDetail-imageContainer {
+        height: 50%;
     }
 }

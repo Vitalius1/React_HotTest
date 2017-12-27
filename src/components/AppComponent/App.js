@@ -11,7 +11,7 @@ class App extends React.Component {
         this.state = {
             showDetail: false, // used to toggle the DetailPageComponent
             sauceToShow: {},   // used to pass the sauce to DetailPageComponent
-            sauceIdsToHide: []        // used to store the IDs of the sauces to remove from list
+            sauceIdsToHide: [] // used to store the IDs of the sauces to remove from list
         };
 
         this.sauces = list.list.map(listItem => {
@@ -59,16 +59,21 @@ class App extends React.Component {
             );
         });
 
+        if (!this.state.showDetail) {
+            return (
+                <div className="App-mainContainer" >
+                    <div className="App-title">
+                        <h1>HOT SAUCE LIST</h1>
+                    </div>
+
+                    <div className="App-hotSauceListContainer">
+                        {hotSauceList}
+                    </div>
+                </div>
+            );
+        }
         return (
-            <div className="App-mainContainer" >
-                <div className="App-title">
-                    <h1>HOT SAUCE LIST</h1>
-                </div>
-
-                <div className="App-hotSauceListContainer">
-                    {hotSauceList}
-                </div>
-
+            <div>
                 <HotSauceDetail
                     sauce={this.state.sauceToShow}
                     show={this.state.showDetail}
