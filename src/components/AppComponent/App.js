@@ -2,7 +2,7 @@ import React from 'react';
 import HotSauceBox from './HotSauceBoxComponent/HotSauceBox';
 import HotSauceDetail from './HotSauceDetailPageComponent/HotSauceDetail';
 
-import list from '../../hotsauces.json';
+// import list from '../../hotsauces.json'; use if needed to bundle with webpack
 
 class App extends React.Component {
     constructor(props) {
@@ -12,8 +12,8 @@ class App extends React.Component {
             showDetail: false,   // used to toggle the DetailPageComponent
             sauceToShow: {},     // used to pass the sauce to DetailPageComponent
             sauceIdsToHide: [],  // used to store the IDs of the sauces to remove from list
-            hotSaucesList: [],
-            dataLoaded: false
+            hotSaucesList: [],   // used to store the sauce list fetched from the API
+            dataLoaded: false    // used to check if data from API is already arived
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -61,8 +61,8 @@ class App extends React.Component {
     }
 
     render() {
-        if (!this.state.dataLoaded) {
-            return <h1>Loading...</h1>
+        if (!this.state.dataLoaded) { // in case data from AJAX request is still to come render a white page (could be anything even a loading circle :)
+            return null;
         }
         // filtering the sauces which are removed and creating a list of the remaining HotSauce Boxes
         const hotSauceList = this.state.hotSaucesList.filter(sauce => {
