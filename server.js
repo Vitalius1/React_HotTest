@@ -19,7 +19,6 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 const server = app.listen(3000, function () {
-    const host = server.address().address;
     const port = server.address().port;
     console.log('Example app listening at http://localhost:%s', port);
     console.log('To STOP application press CTRL + C');
