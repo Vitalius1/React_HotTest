@@ -16,7 +16,7 @@ class HotSauceRemoveButton extends React.Component {
 
     handleKeyDownCaptured(event) { // capture the keyDown event from bubbling-up
         event.stopPropagation();
-        if (event.key === "Backspace") {
+        if (event.key === "Enter") {
             this.props.onClickRemove(this.props.sauceId)
         }
     }

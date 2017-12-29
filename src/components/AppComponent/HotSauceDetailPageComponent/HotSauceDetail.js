@@ -12,7 +12,7 @@ class HotSauceDetail extends React.Component {
             <div className="HotSauceDetail-wrapperContainer">
                 <div className="HotSauceDetail-leftContainer">
                     <div className="HotSauceDetail-headerContainer">
-                        <a href="#" onClick={() => this.props.onClick()}>
+                        <a tabIndex="0" href="#" onClick={() => this.props.onClick()}>
                             &lt;&nbsp; BACK TO HOT SAUCE LIST
                         </a>
                         <HotSauceTitle title={title} />
