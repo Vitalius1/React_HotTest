@@ -1,27 +1,37 @@
-const express = require('express');
-const path = require('path');
-const webpackDevMiddleware = require('webpack-dev-middleware');
+// webpack-dev-middleware
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const compiler = webpack(webpackConfig);
+// express
+const express = require('express');
+const path = require('path');
 const app = express();
 
-const compiler = webpack(webpackConfig);
-
+// making sure we can access the files by typing the names into the browser
 const publicPath = path.resolve(__dirname, 'public')
 app.use(express.static(publicPath));
+
+// app.get('/', (req, res) => {
+//     res.sendFile(index)
+// });
+
+// app.get('/api/hotsauces.json', (req, res) => {
+//     res.sendFile(index)
+// });
 
 app.use(webpackDevMiddleware(compiler, {
     hot: true,
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: webpackConfig.output.publicPath,
     stats: {
         colors: true,
     },
-    historyApiFallback: true,
+    // historyApiFallback: true,
 }));
 
-const server = app.listen(3000, function () {
-    const port = server.address().port;
-    console.log('Example app listening at http://localhost:%s', port);
+
+app.listen(3000, function () {
+    console.log('Example app listening at http://localhost:3000');
     console.log('To STOP application press CTRL + C');
 });

@@ -1,16 +1,18 @@
 const path = require('path');
 
 module.exports = {
-    context: path.join(__dirname, 'src'),
+    devtool: "inline-source-map",
+    context: path.resolve(__dirname, 'src'),
     entry: [
         './index.js',
     ],
     output: {
-        path: path.join(__dirname, 'public'),
+        path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
