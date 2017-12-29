@@ -15,7 +15,7 @@ class App extends React.Component {
             hotSaucesList: [],   // used to store the sauce list fetched from the API
             dataLoaded: false    // used to check if data from API is already arived
         };
-
+        console.log("Hello from constructor")
         this.handleClick = this.handleClick.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
     }

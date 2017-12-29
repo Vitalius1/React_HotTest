@@ -1,10 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     devtool: "inline-source-map",
-    context: path.resolve(__dirname, 'src'),
     entry: [
-        './index.js',
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client',
+        './src/index.js',
     ],
     output: {
         path: path.resolve(__dirname, 'public'),
@@ -14,11 +16,14 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [
-                    'babel-loader',
-                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: ['react-hot-loader/babel']
+                    }
+                }
             },
             {
                 test: /\.json$/,
@@ -31,4 +36,7 @@ module.exports = {
             path.join(__dirname, 'node_modules'),
         ],
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };
