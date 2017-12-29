@@ -3,7 +3,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    background-color: #FFF;
+    background-color: #FFF; /* giving a general white background / will be changed for individual items according the design */
     font-family: Open Sans, sans-serif;
 }
 
@@ -24,38 +24,36 @@ img {
                     Below styles for the list page */
 
 .App-mainContainer {
-    padding: 2%; /* some general padding to move away the elements inside from the browser edges */
+    padding: 2%; /* some general padding to move away the elements inside the main container from it's edges */
 }
 
     .App-title {
         font-size: 1.5em;
         color: #A5050F; /* HotSauce red-brown color picked from the mock-up */
-        padding: 1% 0 3% 5%; /* move title a little to right side as per design */
+        padding: 1% 0 3% 5%; /* apply some padding to the title to eye match the position with the one from the design */
     }
 
     .App-hotSauceListContainer {
         display: flex;
         flex-flow: wrap;
-        justify-content: space-around;
     }
 
         .HotSauceBox {
-            transition: box-shadow .3s;
             order: 1;
-            width: 23%; /* 23% because need some space in betwwen the boxes according the design presented in the mock-up */
-            position: relative;
-            margin-bottom: 2%; /* added for space between rows to eye match the gap between boxes afte justify-content styling */
+            transition: box-shadow .3s;
+            width: 23%; /* 23% because need some gap in betwwen the boxes according the design presented in the mock-up */
+            margin:0 1% 2% 1%; /* added for gap between boxes to eye match the gap between boxes afte justify-content styling */
         }
 
         .HotSauceBox:hover {
             cursor: default;
-            box-shadow: 0 0 11px rgba(15, 162, 247, 0.7);
+            box-shadow: 0 0 11px rgba(15, 162, 247, 0.7); /* giving a box shadow to indicate which box is hovered over (improve user experience :) */
         }
 
             .HotSauceBox-imageContainer {
-                position: relative;
+                position: relative; /* position relative to help position the remove button bellow */
                 width: 100%;
-                height: 36%; /* 36% trying to match as much as possible the width created for the HotSauceBox */
+                height: 36%; /* 36% trying to match as much as possible the width created from width property of the HotSauceBox */
                 border: 1px solid #E2E2E2; /* slightly grey color for border around image as per mock-up */
             }
             
@@ -70,12 +68,11 @@ img {
                 .HotSauceBox-removeButton {
                     position: absolute;
                     top: 10px; /* less than right because accounting for line-height */
-                    right: 20px;
+                    right: 15px;
                     z-index: 1; /* position the button on top */
                     color: #bbb; /* slightly grey color picked from mock-up */
                     background-color: transparent;
-                    font-size: 30px;
-
+                    font-size: 20px;
                     transition: 0.3s;
                 }
 
@@ -88,8 +85,8 @@ img {
             .HotSauceBox-labelContainer {
                 padding: 5%;
                 height: 15%;
-                color: #858585;
-                background-color: #F2F2F2;
+                color: #858585; /* color matching the one given in the mock-up */
+                background-color: #F2F2F2; /* color picked to match the design */
 
             }
         
@@ -106,7 +103,6 @@ img {
     .HotSauceDetail-wrapperContainer {
         display: flex;
         flex-flow: wrap;
-        overflow-y: auto;
     }
     
         .HotSauceDetail-leftContainer {
@@ -123,7 +119,7 @@ img {
                     text-decoration: none;
                     font-size: 1.2em;
                     font-weight: bold;
-                    color: #A5050F; /* matching color from the HotSauce List page (per mock-up) */
+                    color: #A5050F; /* matching color from the HotSauce Detail page (same as in List page)(per mock-up) */
                 }
                 
                 .HotSauceDetail-headerContainer > h3 {

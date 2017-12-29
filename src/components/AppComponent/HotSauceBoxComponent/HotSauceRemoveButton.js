@@ -40,7 +40,7 @@ class HotSauceRemoveButton extends React.Component {
                     onClick={this.handleClick}
                     onKeyDown={this.handleKeyDown}
                 >
-                    &times;
+                    &#10005;
                 </span>
             </div>
         );
