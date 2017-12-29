@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const compiler = webpack(webpackConfig);
 // express
 const express = require('express');
@@ -12,22 +13,17 @@ const app = express();
 const publicPath = path.resolve(__dirname, 'public')
 app.use(express.static(publicPath));
 
-// app.get('/', (req, res) => {
-//     res.sendFile(index)
-// });
+app.get('/api/hotsauces.json', (req, res) => {
+    const hotsauces = require('./hotsauces.json');
+    res.json(hotsauces);
+});
 
-// app.get('/api/hotsauces.json', (req, res) => {
-//     res.sendFile(index)
-// });
-
+app.use(webpackHotMiddleware(compiler));
 app.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    filename: 'bundle.js',
     publicPath: webpackConfig.output.publicPath,
     stats: {
         colors: true,
     },
-    // historyApiFallback: true,
 }));
 
 

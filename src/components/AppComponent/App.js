@@ -25,7 +25,7 @@ class App extends React.Component {
         console.log(self);
         var jsonObj = new XMLHttpRequest();
         jsonObj.overrideMimeType("application/json");
-        jsonObj.open('GET', 'https://raw.githubusercontent.com/Vitalius1/React_HotTest/master/hotsauces.json', true);
+        jsonObj.open('GET', 'api/hotsauces.json', true);
         jsonObj.onreadystatechange = function () {
             if (jsonObj.readyState == 4 && jsonObj.status >= "200" && jsonObj.status < "400") {
                 var data = JSON.parse(jsonObj.responseText);
