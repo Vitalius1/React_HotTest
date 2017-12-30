@@ -22,12 +22,14 @@ class App extends React.Component {
 
     componentDidMount() {
         var self = this;
-        console.log(self);
+        // AJAX request to the API. Expecting a jsonObj.
         var jsonObj = new XMLHttpRequest();
         jsonObj.overrideMimeType("application/json");
         jsonObj.open('GET', 'api/hotsauces.json', true);
         jsonObj.onreadystatechange = function () {
             if (jsonObj.readyState == 4 && jsonObj.status >= "200" && jsonObj.status < "400") {
+                // When the response arrives parse the object and update state with the list and change the flag to true
+                // so that render method will move from the first if statement and render the content
                 var data = JSON.parse(jsonObj.responseText);
                 self.setState({
                     hotSaucesList: data.list,
@@ -78,8 +80,8 @@ class App extends React.Component {
             );
         });
 
-        if (!this.state.showDetail) {
-            return (
+        if (!this.state.showDetail) { // if user requested the HotSauceDetail Page than render() skips the return
+            return (                  // in this if statement and and goes to next return 
                 <div className="App-mainContainer" >
                     <div className="App-title">
                         <h1>HOT SAUCE LIST</h1>
