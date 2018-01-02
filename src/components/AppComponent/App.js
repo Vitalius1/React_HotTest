@@ -1,6 +1,7 @@
 import React from 'react';
 import HotSauceBox from './HotSauceBoxComponent/HotSauceBox';
 import HotSauceDetail from './HotSauceDetailPageComponent/HotSauceDetail';
+import HotSauceAddForm from './HotSauceAddFormComponent/HotSauceAddForm';
 
 // import list from '../../hotsauces.json'; use if needed to bundle with webpack
 
@@ -9,15 +10,18 @@ class App extends React.Component {
         super(props);
         // initialize state when constructing the component
         this.state = {
-            showDetail: false,   // used to toggle the DetailPageComponent
-            sauceToShow: {},     // used to pass the sauce to DetailPageComponent
-            sauceIdsToHide: [],  // used to store the IDs of the sauces to remove from list
-            hotSaucesList: [],   // used to store the sauce list fetched from the API
-            dataLoaded: false    // used to check if data from API is already arived
+            showAddFormModal: false,
+            showDetail: false,        // used to toggle the DetailPageComponent
+            sauceToShow: {},          // used to pass the sauce to DetailPageComponent
+            sauceIdsToHide: [],       // used to store the IDs of the sauces to remove from list
+            hotSaucesList: [],        // used to store the sauce list fetched from the API
+            dataLoaded: false         // used to check if data from API is already arived
         };
         console.log("Hello from constructor")
         this.handleClick = this.handleClick.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
+        this.handleCloseFormModal = this.handleCloseFormModal.bind(this);
     }
 
     componentDidMount() {
@@ -38,6 +42,20 @@ class App extends React.Component {
             }
         };
         jsonObj.send();
+    }
+
+    handleAddButtonClick() {
+        console.log("HEllo Add Button");
+        this.setState({
+            showAddFormModal: true
+        })
+    }
+
+    handleCloseFormModal() {
+        console.log("Cllosing Form");
+        this.setState({
+            showAddFormModal: false
+        })
     }
 
     handleClick(id) {
@@ -85,7 +103,13 @@ class App extends React.Component {
                 <div className="App-mainContainer" >
                     <div className="App-title">
                         <h1>HOT SAUCE LIST</h1>
+                        <button onClick={this.handleAddButtonClick}>Add Sauce</button>
                     </div>
+
+                    <HotSauceAddForm
+                        showAddFormModal={this.state.showAddFormModal}
+                        onClickCloseModal={this.handleCloseFormModal}
+                    />
 
                     <div className="App-hotSauceListContainer">
                         {hotSauceList}

@@ -27,6 +27,47 @@ img {
     padding: 2%; /* some general padding to move away the elements inside the main container from it's edges */
 }
 
+    .App-AddSauceFormModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+        .App-CloseFormModal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            background-color: transparent;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .App-CloseFormModal:hover,
+        .App-CloseFormModal:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .App-AddSauceFormContent {
+            width: 80%;
+            margin: 5% auto;
+            display: block;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
     .App-title {
         font-size: 1.5em;
         color: #A5050F; /* HotSauce red-brown color picked from the mock-up */
