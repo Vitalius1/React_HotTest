@@ -69,7 +69,7 @@ img {
             to {transform:scale(1)}
         }
 
-            .AddForm-label {
+            .AddForm-element {
                 display: block;
                 padding: 3px 0;
             }

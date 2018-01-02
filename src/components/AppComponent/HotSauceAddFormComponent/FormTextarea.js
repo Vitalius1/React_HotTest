@@ -1,15 +1,15 @@
 import React from 'react';
-import { Input } from 'valuelink/tags';
+import { TextArea } from 'valuelink/tags';
 
-function FormInput({ label, valueLink, type, placeholder }) {
+function FormTextarea({ label, valueLink, placeholder }) {
     return (
         <div className="AddForm-element">
             <label>{label}</label><br/>
-            <Input type={type} valueLink={valueLink} placeholder={placeholder} />
+            <TextArea valueLink={valueLink} placeholder={placeholder} />
             <span className="AddForm-errorPlaceholder">
                 &nbsp;{valueLink.error || ""}
             </span>
         </div>
     );
 }
-export default FormInput;
+export default FormTextarea;

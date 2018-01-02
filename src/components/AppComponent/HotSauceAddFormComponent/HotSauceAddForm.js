@@ -2,6 +2,7 @@ import React from 'react';
 import Link, { LinkedComponent } from 'valuelink';
 import { Input } from 'valuelink/tags';
 import FormInput from './FormInput';
+import FormTextarea from './FormTextarea';
 
 class HotSauceAddForm extends LinkedComponent {
     constructor(props) {
@@ -42,10 +43,24 @@ class HotSauceAddForm extends LinkedComponent {
                     <h1>ADD SAUCE</h1>
                     <form onSubmit={this.onSubmit}>
                         
-                        <FormInput label="Title:" valueLink={titleLink} type="text" />
-                        <FormInput label="Subtitle:" valueLink={subtitleLink} type="text" />
-                        <FormInput label="Description:" valueLink={descriptionLink} type="text" />
-                        <FormInput label="Image URL:" valueLink={imageURLLink} type="text" />
+                        <FormInput 
+                            label="Title"
+                            placeholder="Type title here..."
+                            valueLink={titleLink}
+                            type="text" />
+                        <FormInput
+                            label="Image URL"
+                            placeholder="Type ImageUrl here..."
+                            valueLink={imageURLLink}
+                            type="text" />
+                        <FormTextarea
+                            label="Subtitle"
+                            placeholder="Type a short description here..."
+                            valueLink={subtitleLink} />
+                        <FormTextarea
+                            label="Description"
+                            placeholder="Type a detailed description here..."
+                            valueLink={descriptionLink} />
                         
                         <button
                             type="submit"
