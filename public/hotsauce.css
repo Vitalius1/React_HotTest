@@ -89,6 +89,16 @@ img {
                 margin-top: 10px;
                 font-size: 16px;
                 text-align: center;
+                transition-duration: 0.4s;
+            }
+
+            .App-AddSauceFormContent button[disabled] {
+                cursor: not-allowed;
+            }
+            
+            .App-AddSauceFormContent button:enabled:hover,
+            .App-AddSauceFormContent span:hover {
+                background-color: #D8D8D8;
             }
 
     .App-title {
