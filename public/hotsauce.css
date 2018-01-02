@@ -77,6 +77,19 @@ img {
                 .AddForm-errorPlaceholder {
                     color: #ff0000;
                 }
+            
+            .AddForm-cancelButton,
+            .AddForm-submitButton {
+                display: inline-block;
+                border: 1px solid #D8D8D8;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+                margin-right: 10px;
+                margin-top: 10px;
+                font-size: 16px;
+                text-align: center;
+            }
 
     .App-title {
         font-size: 1.5em;

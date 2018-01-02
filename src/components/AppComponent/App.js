@@ -45,14 +45,12 @@ class App extends React.Component {
     }
 
     handleAddButtonClick() {
-        console.log("HEllo Add Button");
         this.setState({
             showAddFormModal: true
         })
     }
 
     handleCloseFormModal() {
-        console.log("Cllosing Form");
         this.setState({
             showAddFormModal: false
         })
@@ -106,10 +104,11 @@ class App extends React.Component {
                         <button onClick={this.handleAddButtonClick}>Add Sauce</button>
                     </div>
 
-                    <HotSauceAddForm
-                        showAddFormModal={this.state.showAddFormModal}
-                        onClickCloseModal={this.handleCloseFormModal}
-                    />
+                    {
+                        this.state.showAddFormModal ?
+                            <HotSauceAddForm onClickCloseModal={this.handleCloseFormModal} /> :
+                            null
+                    }
 
                     <div className="App-hotSauceListContainer">
                         {hotSauceList}

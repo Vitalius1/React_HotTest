@@ -20,9 +20,6 @@ class HotSauceAddForm extends LinkedComponent {
     }
 
     render() {
-        if (!this.props.showAddFormModal) {
-            return null;
-        }
         const titleLink = Link.state(this, 'title')
             .check(x => x.trim(), "Title is required");
         const subtitleLink = Link.state(this, 'subtitle')
@@ -41,9 +38,10 @@ class HotSauceAddForm extends LinkedComponent {
                 </span>
                 <div className="App-AddSauceFormContent">
                     <h1>ADD SAUCE</h1>
+                    
                     <form onSubmit={this.onSubmit}>
-                        
-                        <FormInput 
+
+                        <FormInput
                             label="Title"
                             placeholder="Type title here..."
                             valueLink={titleLink}
@@ -61,13 +59,21 @@ class HotSauceAddForm extends LinkedComponent {
                             label="Description"
                             placeholder="Type a detailed description here..."
                             valueLink={descriptionLink} />
-                        
+
                         <button
+                            className="AddForm-submitButton"
                             type="submit"
                             disabled={titleLink.error || subtitleLink.error || descriptionLink.error || imageURLLink.error}
                         >
                             Add Sauce
                         </button>
+
+                        <span
+                            className="AddForm-cancelButton"
+                            onClick={this.props.onClickCloseModal}
+                        >
+                            Cancel
+                        </span>
                     </form>
                 </div>
             </div>
@@ -75,26 +81,3 @@ class HotSauceAddForm extends LinkedComponent {
     }
 }
 export default HotSauceAddForm;
-{/* <label>Title:
-    <Input
-        type="text"
-        valueLink={this.linkAt('title')} />
-</label><br />
-
-<label>Subtitle:
-    <Input
-        type="text"
-        valueLink={this.linkAt('subtitle')} />
-</label><br />
-
-<label>Description:
-    <Input
-        type="text"
-        valueLink={this.linkAt('description')} />
-</label><br />
-
-<label>Image URL:
-    <Input
-        type="text"
-        valueLink={this.linkAt('imageURL')} />
-</label><br /> */}
