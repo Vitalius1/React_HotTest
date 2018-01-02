@@ -22,6 +22,7 @@ class App extends React.Component {
         this.handleRemove = this.handleRemove.bind(this);
         this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
         this.handleCloseFormModal = this.handleCloseFormModal.bind(this);
+        this.handleSubmitNewSauce = this.handleSubmitNewSauce.bind(this);
     }
 
     componentDidMount() {
@@ -43,17 +44,25 @@ class App extends React.Component {
         };
         jsonObj.send();
     }
-
-    handleAddButtonClick() {
+    
+    handleAddButtonClick() { // open the AddForm Modal
         this.setState({
             showAddFormModal: true
         })
     }
-
-    handleCloseFormModal() {
+    
+    handleCloseFormModal() { // close the AddForm Modal
         this.setState({
             showAddFormModal: false
         })
+    }
+    
+    handleSubmitNewSauce(newSauce) {
+        console.log(JSON.stringify(newSauce));
+        var jsonObj = new XMLHttpRequest();   // new HttpRequest instance 
+        jsonObj.open("POST", "api/newSauce.json", true);
+        jsonObj.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        jsonObj.send(JSON.stringify(newSauce));
     }
 
     handleClick(id) {
@@ -106,7 +115,10 @@ class App extends React.Component {
 
                     {
                         this.state.showAddFormModal ?
-                            <HotSauceAddForm onClickCloseModal={this.handleCloseFormModal} /> :
+                            <HotSauceAddForm
+                                onClickCloseModal={this.handleCloseFormModal}
+                                onSubmitNewSauce={this.handleSubmitNewSauce}
+                            /> :
                             null
                     }
 

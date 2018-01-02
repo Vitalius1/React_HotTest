@@ -6,8 +6,12 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const compiler = webpack(webpackConfig);
 // express
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // making sure we can access the files by typing the names into the browser
 const publicPath = path.resolve(__dirname, 'public')
@@ -16,6 +20,10 @@ app.use(express.static(publicPath));
 app.get('/api/hotsauces.json', (req, res) => {
     const hotsauces = require('./hotsauces.json');
     res.json(hotsauces);
+});
+
+app.post('/api/newSauce.json', (req, res) => {
+    console.log("+++++++++", req.body);
 });
 
 app.use(webpackHotMiddleware(compiler));

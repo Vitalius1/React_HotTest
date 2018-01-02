@@ -13,10 +13,20 @@ class HotSauceAddForm extends LinkedComponent {
             description: '',
             imageURL: ''
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    onSubmit(e) {
-        console.log("submiting", e.target);
+    handleSubmit(e) {
+        e.preventDefault();
+        const newSauce = {
+            title: this.state.title,
+            subtitle: this.state.subtitle,
+            description: this.state.description,
+            imageURL: this.state.imageURL
+        }
+        this.props.onSubmitNewSauce(newSauce);
+        this.props.onClickCloseModal();
     }
 
     render() {
@@ -39,7 +49,7 @@ class HotSauceAddForm extends LinkedComponent {
                 <div className="App-AddSauceFormContent">
                     <h1>ADD SAUCE</h1>
                     
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.handleSubmit}>
 
                         <FormInput
                             label="Title"
