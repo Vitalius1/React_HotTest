@@ -69,6 +69,15 @@ img {
             to {transform:scale(1)}
         }
 
+            .AddForm-label {
+                display: block;
+                padding: 3px 0;
+            }
+
+                .AddForm-errorPlaceholder {
+                    color: #ff0000;
+                }
+
     .App-title {
         font-size: 1.5em;
         color: #A5050F; /* HotSauce red-brown color picked from the mock-up */
