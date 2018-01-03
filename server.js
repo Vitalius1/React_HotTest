@@ -19,7 +19,8 @@ const publicPath = path.resolve(__dirname, 'public')
 app.use(express.static(publicPath));
 
 app.get('/api/hotsauces.json', (req, res) => {
-    const hotsauces = require('./hotsauces_copy.json');
+    let rawdata = fs.readFileSync('./hotsauces_copy.json');
+    let hotsauces = JSON.parse(rawdata);
     res.json(hotsauces);
 });
 
@@ -39,6 +40,7 @@ app.post('/api/newSauce.json', (req, res) => {
         fs.writeFile('./hotsauces_copy.json', JSON.stringify(jsonObj), 'utf-8', function (err) {
             if (err) throw err
             console.log('Done!')
+            res.redirect('/api/hotsauces.json');
         })
     })
 });

@@ -58,13 +58,22 @@ class App extends React.Component {
     }
     
     handleSubmitNewSauce(newSauce) {
-        console.log(JSON.stringify(newSauce));
+        var self = this;
         var jsonObj = new XMLHttpRequest();   // new HttpRequest instance 
         jsonObj.open("POST", "api/newSauce.json", true);
         jsonObj.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        jsonObj.onreadystatechange = function () {
+            if (jsonObj.readyState == 4 && jsonObj.status >= "200" && jsonObj.status < "400") {
+                var data = JSON.parse(jsonObj.responseText);
+                console.log("**********", data)
+                self.setState({
+                    hotSaucesList: data.list
+                });
+            }
+        };
         jsonObj.send(JSON.stringify(newSauce));
     }
-
+    
     handleClick(id) {
         var sauceToShow = {};
         // checking id because method used by different components (one is passing an id and the other not)
